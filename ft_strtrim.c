@@ -6,7 +6,7 @@
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 20:37:34 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/10/24 21:02:42 by ajuliao-         ###   ########.fr       */
+/*   Updated: 2023/10/24 22:59:58 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,19 @@
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*result;
+	int		len_set;
+	int		start;
+	int		end;
 
-	result = malloc(sizeof(char) * ft_strlen(s1) - (ft_strlen(set) * 2));
-	// while (s1)
-	// {
+	len_set = ft_strlen(set);
 
-	// }
-	printf("teste:%s\n",s1);
-	if (ft_strncmp(s1, set, ft_strlen(set)) == 1)
-	{
-		result = ft_strdup((char *)s1 + ft_strlen(set));
-	}
-	// result = ft_strncmp(s1, set, ft_strlen(set));
+	start = 0;
+	end = 0;
+	if (ft_strncmp(s1, set, len_set) == 0)
+		start = ft_strlen(set);
+	if (ft_strncmp(s1 + (ft_strlen(s1) - len_set), set, len_set) == 0)
+		end = len_set;
+	result = malloc(sizeof(char) * ft_strlen(s1) - (start + end));
+	result = ft_substr(s1, start, ft_strlen(s1) - (end + start));
 	return (result);
 }
