@@ -6,7 +6,7 @@
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 12:00:10 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/10/24 22:58:15 by ajuliao-         ###   ########.fr       */
+/*   Updated: 2023/10/25 22:59:18 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ int	main(void)
 
 	// printf("%p", memcpy(NULL, NULL, 3));
 
-	const char	s1[13]= "aalexandreaa";
-
+	const char	s1[66]= "ale juliao santos silva";
+	char	**result;
 	// // printf("%s", ft_strjoin(s1, s2));
-	printf("%s", ft_strtrim(s1, "aa"));
-
+	// printf("%s", **ft_split(s1, ' '));
+	**ft_split(s1, ' ');
 	return (0);
 }
