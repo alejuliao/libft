@@ -6,7 +6,7 @@
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 19:47:11 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/10/25 19:14:13 by ajuliao-         ###   ########.fr       */
+/*   Updated: 2023/10/26 19:53:31 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int		ft_strlen(const char *c);
 int		ft_isascii(int c);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
+char	*ft_itoa(int n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);

@@ -26,6 +26,7 @@ FILES = ft_bzero.c\
  ft_strjoin.c\
  ft_strtrim.c\
  ft_split.c\
+ ft_itoa.c\
 
 FLAGS = -Wall -Wextra -Werror
 OBS = $(FILES:%.c=%.o)

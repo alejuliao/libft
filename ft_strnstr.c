@@ -6,7 +6,7 @@
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 20:54:37 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/10/24 19:30:00 by ajuliao-         ###   ########.fr       */
+/*   Updated: 2023/10/28 11:56:22 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	ft_isspace(char *big, char *little, size_t len)
 {
-	if (*little > 9 && *little < 13 && *little != ' ' )
+	if ((*little > 9 && *little < 13 && *little != ' ')
+		|| little == 0)
 		return (1);
 	return (0);
 }
@@ -24,7 +25,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	size_t	i;
 	int		f;
 
-	if (ft_isspace((char *)big, (char *)little, len) == 1)
+	if (ft_isspace((char *)big, (char *)little, len))
 		return ((char *)big);
 	i = 0;
 	f = 0;

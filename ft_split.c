@@ -6,7 +6,7 @@
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 19:34:50 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/10/25 23:23:00 by ajuliao-         ###   ########.fr       */
+/*   Updated: 2023/10/26 19:30:20 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,6 @@ int	count_breaks(char const *s, char c)
 	return(breaks);
 }
 
-int	ft_isspace(char *big, char *little, size_t len)
-{
-	if (*little > 9 && *little < 13 && *little != ' ' )
-		return (1);
-	return (0);
-}
-
 char	**ft_split(char const *s, char c)
 {
 	int		i;
@@ -37,8 +30,7 @@ char	**ft_split(char const *s, char c)
 	int		*starts;
 	int		j;
 
-	if (ft_isspace((char *)big, (char *)little, len) == 1)
-		return ((char *)big);
+
 	breaks = count_breaks(s, c);
 	//get total of breaks
 	starts = (int*) malloc (sizeof(int) * breaks);
@@ -51,7 +43,7 @@ char	**ft_split(char const *s, char c)
 	{
 		if (s[i] == c)
 		{
-			starts[j] = i;
+			starts[j] = i + 1;
 			j++;
 		}
 		i++;
@@ -61,11 +53,16 @@ char	**ft_split(char const *s, char c)
 	j = (int) sizeof(starts) / sizeof(int);
 	j = starts[j - 1];
 	starts[j] = ft_strlen(s);
+	printf("%d\n",starts[j]);
+	printf("%d\n",breaks);
+
 	i = 0;
 	while (i <= breaks)
 	{
+		printf("len:%d:\n",starts[i]);
 		result[i] = malloc (sizeof(char *) * starts[i] + 1);
 		result[i] = ft_substr(s, starts[i], starts[i + 1] - starts[i]);
+		printf("result:%s:\n",result[i]);
 		i++;
 	}
 	return (result);
