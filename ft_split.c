@@ -6,7 +6,7 @@
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 19:34:50 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/10/26 19:30:20 by ajuliao-         ###   ########.fr       */
+/*   Updated: 2023/10/30 21:33:18 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	count_breaks(char const *s, char c)
 	while (*s++)
 		if (*s == c)
 			breaks++;
-	return(breaks);
+	return (breaks);
 }
 
 char	**ft_split(char const *s, char c)
@@ -30,11 +30,10 @@ char	**ft_split(char const *s, char c)
 	int		*starts;
 	int		j;
 
-
 	breaks = count_breaks(s, c);
 	//get total of breaks
-	starts = (int*) malloc (sizeof(int) * breaks);
-	result = malloc (sizeof(char*) * breaks);
+	starts = (int *) malloc (sizeof(int) * breaks);
+	result = malloc (sizeof(char *) * breaks);
 	 //create malloc of results with breaks [3][]
 	i = 0;
 	starts[0] = 0;
@@ -52,16 +51,16 @@ char	**ft_split(char const *s, char c)
 	// printf("sizeof%lu %lu\n",sizeof(starts), sizeof(starts[0]));
 	j = (int) sizeof(starts) / sizeof(int);
 	j = starts[j - 1];
-	starts[j] = ft_strlen(s);
-	printf("%d\n",starts[j]);
-	printf("%d\n",breaks);
+	starts[j] = ft_strlen(s) + 1;
+	printf("starts:%d\n",starts[j]);
+	printf("breaks:%d\n",breaks);
 
 	i = 0;
 	while (i <= breaks)
 	{
 		printf("len:%d:\n",starts[i]);
 		result[i] = malloc (sizeof(char *) * starts[i] + 1);
-		result[i] = ft_substr(s, starts[i], starts[i + 1] - starts[i]);
+		result[i] = ft_substr(s, starts[i], starts[i + 1] - (starts[i]) - 1);
 		printf("result:%s:\n",result[i]);
 		i++;
 	}

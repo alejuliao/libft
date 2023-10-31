@@ -6,7 +6,7 @@
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 12:00:10 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/10/28 11:42:01 by ajuliao-         ###   ########.fr       */
+/*   Updated: 2023/10/30 21:28:25 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,13 @@ int	main(void)
 	// printf("falsa: %s\n", ft_strnstr(big, lit, 0));
 
 	// printf("%p", memcpy(NULL, NULL, 3));
-
+	// ft_itoa(12344);
+	// char s1[] = "";
+	// printf("result:%s", ft_strtrim(s1, ""));
+	// printf("%s", ft_strjoin(s1, s2));
 	// const char	s1[23]= "ale juliao santos silva";
 	// char	**result;
-	// // printf("%s", ft_strjoin(s1, s2));
-	// printf("%s", **ft_split(s1, ' '));
+	printf("%s", *ft_split("lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse", ' '));
 	// **ft_split(s1, ' ');
-
-	// ft_itoa(12344);
-	char s1[] = " lorem ipsum dolor sit amet   ";
-	printf("result:%s", ft_strtrim(s1, "l "));
 	return (0);
 }
