@@ -6,7 +6,7 @@
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 20:37:34 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/10/30 22:54:36 by ajuliao-         ###   ########.fr       */
+/*   Updated: 2023/10/30 23:04:17 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,23 +38,21 @@ char	*ft_strtrim(char const *s1, char const *set)
 	len_s1 = ft_strlen(s1);
 	start = 0;
 	end = 0;
-	if (!*s1)
-		return ("");
-	if (!*set)
-		return (ft_substr(s1, 0, len_s1));
-	while (count_c(*s1, set) == 1)
-	{
+	while (count_c(s1[start], set) == 1)
 		start++;
-		s1++;
-	}
-	while (count_c(s1[(len_s1 - start) - 1], set) == 1)
-	{
-		len_s1--;
+	while (count_c(s1[len_s1 - end - 1], set) == 1)
 		end++;
+	if (start >= len_s1)
+	{
+		res = (char *)malloc(1);
+		if (!res)
+			return (NULL);
+		res[0] = '\0';
+		return (res);
 	}
-	// res = (char *) malloc(sizeof(char) * (ft_strlen(s1) - (start + end) + 1));
-	res = ft_substr(s1, 0, ft_strlen(s1) - (end));
-	if (!res)
-		return (0);
-	return (res);
+	else
+	{
+		res = ft_substr(s1, start, len_s1 - start - end);
+		return (res);
+	}
 }
