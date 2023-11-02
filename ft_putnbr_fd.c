@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/21 14:13:26 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/11/02 18:59:42 by ajuliao-         ###   ########.fr       */
+/*   Created: 2023/11/02 11:01:44 by ajuliao-          #+#    #+#             */
+/*   Updated: 2023/11/02 19:10:45 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+void	ft_putnbr_fd(int n, int fd)
 {
-	size_t	len_dst;
-	size_t	len_src;
-
-	len_dst = ft_strlen(dst);
-	len_src = ft_strlen(src);
-	if (len_dst < size)
-		return (size + len_src);
-	else
-		ft_strlcpy(dst + len_dst, src, size);
-
-	return (ft_strlen(dst));
-	// printf("len dst:%zu\nlen src:%zu\n", len_dst, len_src);
-	// ft_memcpy(dst + len_dst, src, size);
-
+	if (n == -2147483648)
+	{
+		ft_putstr_fd("-2147483648", fd);
+		return ;
+	}
+	if (n == 0)
+	{
+		ft_putchar_fd('0', fd);
+		return ;
+	}
+	if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		n = -n;
+	}
+	if (n / 10 != 0)
+		ft_putnbr_fd(n / 10, fd);
+	ft_putchar_fd(n % 10 + '0', fd);
 }

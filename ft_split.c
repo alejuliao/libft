@@ -6,7 +6,7 @@
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 19:34:50 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/10/30 21:33:18 by ajuliao-         ###   ########.fr       */
+/*   Updated: 2023/11/02 11:12:23 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,16 @@ char	**ft_split(char const *s, char c)
 	j = (int) sizeof(starts) / sizeof(int);
 	j = starts[j - 1];
 	starts[j] = ft_strlen(s) + 1;
-	printf("starts:%d\n",starts[j]);
-	printf("breaks:%d\n",breaks);
+	// printf("starts:%d\n",starts[j]);
+	// printf("breaks:%d\n",breaks);
 
 	i = 0;
 	while (i <= breaks)
 	{
-		printf("len:%d:\n",starts[i]);
+		// printf("len:%d:\n",starts[i]);
 		result[i] = malloc (sizeof(char *) * starts[i] + 1);
 		result[i] = ft_substr(s, starts[i], starts[i + 1] - (starts[i]) - 1);
-		printf("result:%s:\n",result[i]);
+		// printf("result:%s:\n",result[i]);
 		i++;
 	}
 	return (result);

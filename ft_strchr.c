@@ -6,7 +6,7 @@
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 20:27:34 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/10/21 11:38:13 by ajuliao-         ###   ########.fr       */
+/*   Updated: 2023/11/02 19:45:54 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,14 @@ char	*ft_strchr(const char *s, int c)
 	char	*result;
 	int		i;
 
-	if (c == '\0')
-		return ((char *)s + ft_strlen(s));
+
 	i = 0;
+	result = (char *) malloc(sizeof(char) * ft_strlen(s) + 1);
+	if (!result)
+		return (0);
 	result = (char *)s;
+	if (c == '\0')
+		return ((char *)&result[ft_strlen(s)]);
 	while (result[i])
 	{
 		if (result[i] == c)

@@ -6,7 +6,7 @@
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 20:54:37 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/10/28 11:56:22 by ajuliao-         ###   ########.fr       */
+/*   Updated: 2023/11/02 11:55:25 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 int	ft_isspace(char *big, char *little, size_t len)
 {
-	if ((*little > 9 && *little < 13 && *little != ' ')
-		|| little == 0)
+	if ((*little > 9 && *little < 13 && *little != ' ') || !little || len == 0)
 		return (1);
 	return (0);
 }

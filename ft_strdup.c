@@ -6,7 +6,7 @@
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 10:39:41 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/10/21 11:13:40 by ajuliao-         ###   ########.fr       */
+/*   Updated: 2023/11/02 11:32:17 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ char	*ft_strdup(char *src)
 	while (src[len] != '\0')
 		len++;
 	copy = (char *) malloc(sizeof(char) * len + 1);
+	if (copy == 0)
+		return (0);
 	len = 0;
 	while (src[len])
 	{

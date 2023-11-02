@@ -6,7 +6,7 @@
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 20:37:34 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/10/30 23:04:17 by ajuliao-         ###   ########.fr       */
+/*   Updated: 2023/11/02 18:57:55 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,9 @@ char	*ft_strtrim(char const *s1, char const *set)
 		end++;
 	if (start >= len_s1)
 	{
-		res = (char *)malloc(1);
-		if (!res)
-			return (NULL);
-		res[0] = '\0';
+		res = ft_strdup("");
 		return (res);
 	}
-	else
-	{
-		res = ft_substr(s1, start, len_s1 - start - end);
-		return (res);
-	}
+	res = ft_substr(s1, start, len_s1 - start - end);
+	return (res);
 }

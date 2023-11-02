@@ -6,7 +6,7 @@
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 19:34:09 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/10/26 20:59:44 by ajuliao-         ###   ########.fr       */
+/*   Updated: 2023/11/02 10:53:23 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*ft_exception(int n, char *result)
 		result[0] = '0';
 		return (result);
 	}
-	return ('\0');
+	return (0);
 }
 int	ft_count(int n)
 {
