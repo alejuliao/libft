@@ -12,6 +12,28 @@
 
 #include "libft.h"
 
+char	*ft_exception(int n, char *result)
+{
+	if (n == -2147483648 )
+	{
+		result = (char *) malloc(sizeof(char) * 20);
+		result = "-2147483648";
+		return (result);
+	}
+		if (n == 2147483647 )
+	{
+		result = (char *) malloc(sizeof(char) * 19);
+		result = "2147483647";
+		return (result);
+	}
+	if (n == 0)
+	{
+		result = (char *) malloc(19);
+		result[0] = '0';
+		return (result);
+	}
+	return ('\0');
+}
 int	ft_count(int n)
 {
 	int	i;
@@ -34,17 +56,30 @@ char	*ft_itoa(int n)
 	int		i;
 	int		rem;
 
+	if (ft_exception(n, result)[0] == '\0')
+		return (result);
 	num = n;
 	count = ft_count(n);
 	result = (char *) malloc(sizeof(char) * (count + 1));
+	if (result == 0)
+		return (0);
 	i = 0;
-	while (i < count)
+	if (n < 0)
 	{
-		rem = n % 10;
-		n = n / 10;
-		result[count - (i + 1)] = rem + '0';
+		result[0] = '-';
+		num = num * -1;
 		i++;
 	}
-	printf("%s", result);
+	while (i < count)
+	{
+		rem = num % 10;
+		num = num / 10;
+		if (n > 0)
+			result[count - (i + 1)] = rem + '0';
+		else
+			result[count - i] = rem + '0';
+		i++;
+	}
+	result[i] = '\0';
 	return (result);
 }
