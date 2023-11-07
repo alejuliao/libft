@@ -6,7 +6,7 @@
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 19:34:50 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/11/06 22:24:29 by ajuliao-         ###   ########.fr       */
+/*   Updated: 2023/11/06 22:55:00 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,31 @@ static int	*count_ends(char const *s, char c, int breaks)
 		}
 		i++;
 	}
-	ends[3] = ft_strlen(s);
+	breaks = breaks - 1;
+	ends[breaks] = ft_strlen(s);
 	return (ends);
+}
+
+static int	*count_starts(char const *s, char c, int breaks)
+{
+	int		*starts;
+	int		j;
+	int		i;
+
+	starts = (int *) malloc (sizeof(int) * breaks);
+	starts[0] = 0;
+	i = 0;
+	j = 1;
+	while (s[i] != '\0')
+	{
+		if (s[i - 1] == c && s[i] != c)
+		{
+			starts[j] = i;
+			j++;
+		}
+		i++;
+	}
+	return (starts);
 }
 
 char	**ft_split(char const *s, char c)
@@ -59,35 +82,22 @@ char	**ft_split(char const *s, char c)
 	int		breaks;
 	int		*starts;
 	int		*ends;
-	// int		j;
 
 	breaks = count_breaks(s, c) + 1;
-	// ends = (int *) malloc (sizeof(int) * breaks);
 	result = malloc (sizeof(char *) * breaks);
-	// i = 0;
-	// j = 0;
-	// while (s[i] != '\0')
-	// {
-	// 	if (s[i] == c)
-	// 	{
-	// 		ends[j] = i;
-	// 		while (s[i + 1] == c)
-	// 			i++;
-	// 		j++;
-	// 	}
-	// 	i++;
-	// }
+	starts = count_starts(s, c, breaks);
 	ends = count_ends(s, c, breaks);
-	// while (*ends)
-		printf("ends%d\n", ends[5]);
-	// ends[breaks] = ft_strlen(s);
-	// printf("ends%d\n", ends[breaks]);
 	i = 0;
-	while (i <= breaks)
+	while (i < breaks)
 	{
-		result[i] = malloc (sizeof(char *) * starts[i] + 1);
-		result[i] = ft_substr(s, starts[i], starts[i + 1] - (starts[i]) - 1);
+		result[i] = malloc (sizeof(char *) * (starts[i] - ends[i]));
+		result[i] = ft_substr(s, starts[i], ends[i] - starts[i]);
 		i++;
 	}
+	printf("%s:\n", result[0]);
+	printf("%s:\n", result[1]);
+	printf("%s:\n", result[2]);
+	printf("%s:\n", result[3]);
+
 	return (result);
 }
