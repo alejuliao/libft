@@ -6,13 +6,13 @@
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 20:37:34 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/11/06 19:53:38 by ajuliao-         ###   ########.fr       */
+/*   Updated: 2023/11/06 21:30:15 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	count_c(char c, const char *set)
+static int	count_c(char c, const char *set)
 {
 	int	i;
 

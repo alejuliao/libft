@@ -6,13 +6,13 @@
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 19:34:50 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/11/06 19:55:47 by ajuliao-         ###   ########.fr       */
+/*   Updated: 2023/11/06 22:24:29 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	count_breaks(char const *s, char c)
+static int	count_breaks(char const *s, char c)
 {
 	int	breaks;
 	int	i;
@@ -28,6 +28,30 @@ int	count_breaks(char const *s, char c)
 	return (breaks);
 }
 
+static int	*count_ends(char const *s, char c, int breaks)
+{
+	int		*ends;
+	int		j;
+	int		i;
+
+	ends = (int *) malloc (sizeof(int) * breaks);
+	i = 0;
+	j = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] == c)
+		{
+			ends[j] = i;
+			while (s[i + 1] == c)
+				i++;
+			j++;
+		}
+		i++;
+	}
+	ends[3] = ft_strlen(s);
+	return (ends);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	int		i;
@@ -35,37 +59,29 @@ char	**ft_split(char const *s, char c)
 	int		breaks;
 	int		*starts;
 	int		*ends;
-	int		j;
-	int		iends;
+	// int		j;
 
-	breaks = count_breaks(s, c);
-	//get total of breaks
-	starts = (int *) malloc (sizeof(int) * breaks);
-	ends = (int *) malloc (sizeof(int) * breaks);
+	breaks = count_breaks(s, c) + 1;
+	// ends = (int *) malloc (sizeof(int) * breaks);
 	result = malloc (sizeof(char *) * breaks);
-	 //create malloc of results with breaks [3][]
-	i = 0;
-	starts[0] = 0;
-	j = 1;
-	iends = 0;
-	while (s[i] != '\0')
-	{
-		if (s[i] == c)
-		{
-			starts[j] = i;
-			while (s[i + 1] == c)
-				i++;
-			j++;
-		}
-		i++;
-	}
-	while (*starts != starts[breaks])
-	{
-		printf("starts%d\n", *starts++);
-		printf("ends%d\n", *ends++);
-
-	}
-	starts[j] = ft_strlen(s) + 1;
+	// i = 0;
+	// j = 0;
+	// while (s[i] != '\0')
+	// {
+	// 	if (s[i] == c)
+	// 	{
+	// 		ends[j] = i;
+	// 		while (s[i + 1] == c)
+	// 			i++;
+	// 		j++;
+	// 	}
+	// 	i++;
+	// }
+	ends = count_ends(s, c, breaks);
+	// while (*ends)
+		printf("ends%d\n", ends[5]);
+	// ends[breaks] = ft_strlen(s);
+	// printf("ends%d\n", ends[breaks]);
 	i = 0;
 	while (i <= breaks)
 	{
