@@ -6,7 +6,7 @@
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 20:37:34 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/11/02 18:57:55 by ajuliao-         ###   ########.fr       */
+/*   Updated: 2023/11/06 19:53:38 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ int	count_c(char c, const char *set)
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	char			*res;
-	int				len_s1;
+	unsigned int	len_s1;
 	unsigned int	start;
-	int				end;
+	unsigned int	end;
 
-	len_s1 = ft_strlen(s1);
+	len_s1 = (unsigned int)ft_strlen(s1);
 	start = 0;
 	end = 0;
 	while (count_c(s1[start], set) == 1)

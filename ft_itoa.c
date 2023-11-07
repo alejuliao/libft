@@ -6,80 +6,47 @@
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 19:34:09 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/11/02 10:53:23 by ajuliao-         ###   ########.fr       */
+/*   Updated: 2023/11/06 20:24:42 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_exception(int n, char *result)
+static int	ft_count(int n)
 {
-	if (n == -2147483648 )
-	{
-		result = (char *) malloc(sizeof(char) * 20);
-		result = "-2147483648";
-		return (result);
-	}
-		if (n == 2147483647 )
-	{
-		result = (char *) malloc(sizeof(char) * 19);
-		result = "2147483647";
-		return (result);
-	}
-	if (n == 0)
-	{
-		result = (char *) malloc(19);
-		result[0] = '0';
-		return (result);
-	}
-	return (0);
-}
-int	ft_count(int n)
-{
-	int	i;
-	int	num;
+	int	count;
 
-	i = 1;
-	num = n;
-	while ((num /= 10))
-	{
-		i++;
-	}
-	return (i);
+	if (n < 0)
+		count = 1;
+	else
+		count = 2;
+	while (n /= 10)
+		count++;
+	return (count);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*result;
-	int		num;
-	int		count;
-	int		i;
-	int		rem;
+	char		*result;
+	long int	num;
+	int			count;
+	int			i;
 
-	if (ft_exception(n, result)[0] == '\0')
-		return (result);
 	num = n;
-	count = ft_count(n);
-	result = (char *) malloc(sizeof(char) * (count + 1));
+	if (n < 0)
+		num *= -1;
+	count = ft_count(num);
+	result = (char *) malloc(sizeof(char) * count + 1);
 	if (result == 0)
 		return (0);
-	i = 0;
-	if (n < 0)
+	i = -1;
+	while (i++ < count)
 	{
-		result[0] = '-';
-		num = num * -1;
-		i++;
-	}
-	while (i < count)
-	{
-		rem = num % 10;
+		result[count - i - 1] = num % 10 + '0';
 		num = num / 10;
-		if (n > 0)
-			result[count - (i + 1)] = rem + '0';
-		else
-			result[count - i] = rem + '0';
-		i++;
 	}
+	if (n < 0)
+		result[0] = '-';
 	result[i] = '\0';
 	return (result);
 }

@@ -1,34 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/21 14:22:19 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/11/06 19:54:36 by ajuliao-         ###   ########.fr       */
+/*   Created: 2023/11/06 21:01:56 by ajuliao-          #+#    #+#             */
+/*   Updated: 2023/11/06 21:02:18 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(const char *s, unsigned int start, size_t len)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *),void (*del)(void *))
 {
-	char	*result;
-	size_t	i;
 
-	if (len > (size_t)ft_strlen(s))
-		result = (char *) malloc(sizeof(char) * ft_strlen(s) + 1);
-	else
-		result = (char *) malloc(sizeof(char) * len + 1);
-	if (result == 0)
-		return (0);
-	i = 0;
-	while ((start + i) < (size_t)ft_strlen(s) && i < len)
-	{
-		result[i] = s[start + i];
-		i++;
-	}
-	result[i] = '\0';
-	return (result);
 }

@@ -6,7 +6,7 @@
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 19:34:50 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/11/02 11:12:23 by ajuliao-         ###   ########.fr       */
+/*   Updated: 2023/11/06 19:55:47 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,17 @@
 
 int	count_breaks(char const *s, char c)
 {
-	int		breaks;
+	int	breaks;
+	int	i;
 
-	while (*s++)
-		if (*s == c)
+	breaks = 0;
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == c && s[i + 1] != c)
 			breaks++;
+		i++;
+	}
 	return (breaks);
 }
 
@@ -28,40 +34,43 @@ char	**ft_split(char const *s, char c)
 	char	**result;
 	int		breaks;
 	int		*starts;
+	int		*ends;
 	int		j;
+	int		iends;
 
 	breaks = count_breaks(s, c);
 	//get total of breaks
 	starts = (int *) malloc (sizeof(int) * breaks);
+	ends = (int *) malloc (sizeof(int) * breaks);
 	result = malloc (sizeof(char *) * breaks);
 	 //create malloc of results with breaks [3][]
 	i = 0;
 	starts[0] = 0;
 	j = 1;
+	iends = 0;
 	while (s[i] != '\0')
 	{
 		if (s[i] == c)
 		{
-			starts[j] = i + 1;
+			starts[j] = i;
+			while (s[i + 1] == c)
+				i++;
 			j++;
 		}
 		i++;
 	}
-	// pegar o ultimo valor do array
-	// printf("sizeof%lu %lu\n",sizeof(starts), sizeof(starts[0]));
-	j = (int) sizeof(starts) / sizeof(int);
-	j = starts[j - 1];
-	starts[j] = ft_strlen(s) + 1;
-	// printf("starts:%d\n",starts[j]);
-	// printf("breaks:%d\n",breaks);
+	while (*starts != starts[breaks])
+	{
+		printf("starts%d\n", *starts++);
+		printf("ends%d\n", *ends++);
 
+	}
+	starts[j] = ft_strlen(s) + 1;
 	i = 0;
 	while (i <= breaks)
 	{
-		// printf("len:%d:\n",starts[i]);
 		result[i] = malloc (sizeof(char *) * starts[i] + 1);
 		result[i] = ft_substr(s, starts[i], starts[i + 1] - (starts[i]) - 1);
-		// printf("result:%s:\n",result[i]);
 		i++;
 	}
 	return (result);
