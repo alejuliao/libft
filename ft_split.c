@@ -6,7 +6,7 @@
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 19:34:50 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/11/07 20:27:19 by ajuliao-         ###   ########.fr       */
+/*   Updated: 2023/11/07 23:53:05 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ static int	*count_ends(char const *s, char c, int breaks)
 
 	ends = (int *) malloc (sizeof(int) * breaks);
 	i = 0;
+	while (s[i] == c)
+		i++;
 	j = 0;
 	while (s[i] != '\0')
 	{
@@ -60,9 +62,11 @@ static int	*count_starts(char const *s, char c, int breaks)
 	int		i;
 
 	starts = (int *) malloc (sizeof(int) * breaks);
-	starts[0] = 0;
 	i = 0;
-	j = 1;
+	while (s[i] == c)
+		i++;
+	j = 0;
+	starts[j] = i;
 	while (s[i] != '\0')
 	{
 		if (s[i - 1] == c && s[i] != c)
@@ -90,9 +94,13 @@ char	**ft_split(char const *s, char c)
 	i = 0;
 	while (i < breaks)
 	{
-		result[i] = malloc (sizeof(char *) * (starts[i] - ends[i]));
+		result[i] = (char *) malloc (sizeof(char *) * (starts[i] - ends[i]));
+		// printf("starts:%d\n", starts[i]);
+		printf("ends:%d\n", ends[i]);
 		result[i] = ft_substr(s, starts[i], ends[i] - starts[i]);
 		i++;
 	}
+	printf("result0:%s\n", result[0]);
+	printf("result1%s\n", result[1]);
 	return (result);
 }

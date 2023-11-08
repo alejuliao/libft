@@ -6,7 +6,7 @@
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 21:44:41 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/10/21 12:07:59 by ajuliao-         ###   ########.fr       */
+/*   Updated: 2023/11/07 23:22:35 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,5 @@ int	ft_atoi(const char *nptr)
 		num = num * 10 + (nptr[i] - '0');
 		i++;
 	}
-
 	return (num * s);
 }

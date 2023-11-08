@@ -6,7 +6,7 @@
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 20:27:34 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/11/07 20:41:02 by ajuliao-         ###   ########.fr       */
+/*   Updated: 2023/11/07 23:22:49 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ char	*ft_strchr(const char *s, int c)
 {
 	char	*result;
 	int		i;
-
 
 	i = 0;
 	if (c > 255)
