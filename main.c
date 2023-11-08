@@ -6,7 +6,7 @@
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 12:00:10 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/11/07 21:17:03 by ajuliao-         ###   ########.fr       */
+/*   Updated: 2023/11/07 22:59:35 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,13 @@ int	main(void)
 
 	// printf("%p", memcpy(NULL, NULL, 3));
 	// printf("itoa:%s\n", ft_itoa(-2147483648));
-	// printf("itoa:%s\n", ft_itoa(0));
+	char	*num;
+	num = ft_itoa(-2147483648);
+	printf("itoa:%s\n", num);
+	// free(num);
+
+	// printf("itoa:%s\n", ft_itoa(2147483647));
+	// printf("itoa:%s\n", ft_itoa(-214748));
 
 	// char s1[] = "";
 	// printf("result:%s", ft_strtrim(s1, ""));
@@ -40,11 +46,7 @@ int	main(void)
 	// **ft_split(s1, ' ');
 	// ft_putstr_fd("  lorem\nipsum\rdolor\tsit amet  ", 1);
 
-	char	*str;
-	char	*s;
-	str = strdup("0123456789");
-	s = ft_substr(str, 9, 10);
-	printf("%s", s);
+
 	return (0);
 	// 	printf("%d\n", starts[0]);
 	// printf("%d\n", starts[1]);
