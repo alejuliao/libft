@@ -6,7 +6,7 @@
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 19:34:50 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/11/06 22:55:00 by ajuliao-         ###   ########.fr       */
+/*   Updated: 2023/11/07 20:27:19 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,5 @@ char	**ft_split(char const *s, char c)
 		result[i] = ft_substr(s, starts[i], ends[i] - starts[i]);
 		i++;
 	}
-	printf("%s:\n", result[0]);
-	printf("%s:\n", result[1]);
-	printf("%s:\n", result[2]);
-	printf("%s:\n", result[3]);
-
 	return (result);
 }

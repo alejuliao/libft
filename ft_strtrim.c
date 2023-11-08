@@ -6,7 +6,7 @@
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 20:37:34 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/11/06 21:30:15 by ajuliao-         ###   ########.fr       */
+/*   Updated: 2023/11/07 22:32:17 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ char	*ft_strtrim(char const *s1, char const *set)
 	end = 0;
 	while (count_c(s1[start], set) == 1)
 		start++;
-	while (count_c(s1[len_s1 - end - 1], set) == 1)
-		end++;
-	if (start >= len_s1)
+	if (start == len_s1)
 	{
 		res = ft_strdup("");
 		return (res);
 	}
+	while (count_c(s1[len_s1 - end - 1], set) == 1)
+		end++;
 	res = ft_substr(s1, start, len_s1 - start - end);
 	return (res);
 }

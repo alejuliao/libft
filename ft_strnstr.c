@@ -6,7 +6,7 @@
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 20:54:37 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/11/06 19:51:26 by ajuliao-         ###   ########.fr       */
+/*   Updated: 2023/11/07 20:51:01 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	new = (char *)big;
 	i = 0;
 	f = 0;
-	if (!little && len == 0)
-		return (new);
-	if (big == little)
+	if (!*little || big == little)
 		return (new);
 	if (len == 0)
 		return (0);

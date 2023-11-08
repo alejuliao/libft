@@ -6,7 +6,7 @@
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 20:27:34 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/11/02 19:45:54 by ajuliao-         ###   ########.fr       */
+/*   Updated: 2023/11/07 20:41:02 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*ft_strchr(const char *s, int c)
 
 
 	i = 0;
+	if (c > 255)
+		c %= 256;
 	result = (char *) malloc(sizeof(char) * ft_strlen(s) + 1);
 	if (!result)
 		return (0);

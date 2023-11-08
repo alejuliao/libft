@@ -1,4 +1,5 @@
 NAME = libft.a
+
 FILES = ft_bzero.c\
  ft_isalnum.c\
  ft_isalpha.c\
@@ -32,25 +33,40 @@ FILES = ft_bzero.c\
  ft_putchar_fd.c\
  ft_putstr_fd.c\
  ft_putendl_fd.c\
- ft_putnbr_fd.c\
+ ft_putnbr_fd.c
+
+B_FILES = ft_lstnew.c\
+ ft_lstadd_front.c\
+ ft_lstsize.c\
+ ft_lstlast.c\
+ ft_lstadd_back.c\
+ ft_lstdelone.c\
+ ft_lstiter.c\
+
+O_BONUS = $(B_FILES:.c=.o)
+
+INCLUDES = libft.h
 
 FLAGS = -Wall -Wextra -Werror
-OBS = $(FILES:%.c=%.o)
+
+O_FLAGS = -c
+
+O_FILES = $(FILES:.c=.o)
+
+bonus: $(O_BONUS)
 
 all: $(NAME)
 
-$(NAME):
-	gcc -c $(FILES)
-	# $(FLAGS)
-	ar rc $@ $(OBS)
+$(NAME): $(O_FILES)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -rf $(NAME)
 
 clean:
-	rm -rf $(OBS)
+	rm -rf $(O_BONUS) $(O_FILES)
 
-re: fclean $(NAME)
+re: fclean all
 
 %.o: %.c
-	gcc -c $< -o $@ -I includes
+	cc -I$(INCLUDES) $(O_FLAGS) $(FLAGS) $< -o $@
+	ar -rc $(NAME) $@
