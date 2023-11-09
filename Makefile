@@ -1,4 +1,5 @@
 NAME = libft.a
+
 FILES = ft_bzero.c\
  ft_isalnum.c\
  ft_isalpha.c\
@@ -32,7 +33,7 @@ FILES = ft_bzero.c\
  ft_putchar_fd.c\
  ft_putstr_fd.c\
  ft_putendl_fd.c\
- ft_putnbr_fd.c\
+ ft_putnbr_fd.c
 
 B_FILES = ft_lstnew.c\
  ft_lstadd_front.c\
@@ -40,28 +41,36 @@ B_FILES = ft_lstnew.c\
  ft_lstlast.c\
  ft_lstadd_back.c\
  ft_lstdelone.c\
- ft_lstiter.c\
+ ft_lstiter.c
 
+COMPILER = cc
 FLAGS = -Wall -Wextra -Werror
+
 OBS = $(FILES:%.c=%.o)
+OBS_B = $(B_FILES:%.c=%.o)
+
+ifdef	WITH_BONUS
+	OBS += $(OBS_B)
+endif
 
 all: $(NAME)
 
-bonus:
-	gcc -c $(B_FILES) $(FLAGS)
-	ar rc $(NAME) $^
+bonus: $(OBS_B)
+	@make WITH_BONUS=TRUE --no-print-directory
 
-$(NAME):
-	gcc -c $(FILES) $(FLAGS)
-	ar rc $@ $(OBS)
+$(NAME): $(OBS)
 
 fclean: clean
 	rm -f $(NAME)
 
 clean:
-	rm -rf $(OBS)
+	rm -f $(OBS) $(OBS_B)
 
 re: fclean $(NAME)
 
 %.o: %.c
-	gcc -c $< -o $@ -I includes
+	@echo "Compiling $@"
+	@$(COMPILER) $(FLAGS) -c $< -o $@ -I ./
+	@ar rc $(NAME) $@
+
+.PHONY: all bonus clean fclean re
