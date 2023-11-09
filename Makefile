@@ -47,12 +47,12 @@ OBS = $(FILES:%.c=%.o)
 
 all: $(NAME)
 
-bonus: $(B_FILES)
+bonus:
+	gcc -c $(B_FILES) $(FLAGS)
 	ar rc $(NAME) $^
 
 $(NAME):
-	gcc -c $(FILES)
-	# $(FLAGS)
+	gcc -c $(FILES) $(FLAGS)
 	ar rc $@ $(OBS)
 
 fclean: clean
