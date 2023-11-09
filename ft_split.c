@@ -12,58 +12,69 @@
 
 #include "libft.h"
 
-static int	count_words(char const *s, char c)
+static int	count_words(const char *s, char c)
 {
-	int	words;
-	int	i;
+	int count;
+	int check;
 
-	words = 0;
-	i = 0;
-	if (c == '\0')
-		return (1);
-	while (s[i] != '\0')
+	count = 0;
+	check = 0;
+	while (*s)
 	{
-		while (s[i] == c)
-			i++;
-		if (s[i] != c && s[i])
-			words++;
-		while (s[i] != c && s[i] != '\0')
-			i++;
+		if (*s != c && check == 0)
+		{
+			check = 1;
+			count++;
+		}
+		else if (*s == c)
+			check = 0;
+		s++;
 	}
+	return (count);
+}
+
+static char	*add_words(const char *s, int start, int end)
+{
+	char	*words;
+	int		i;
+
+	i = 0;
+	words = malloc((end - start + 1) * sizeof(char));
+	if (!words)
+	{
+		return (NULL);
+	}
+	while (start < end)
+		words[i++] = s[start++];
+	words[i] = '\0';
 	return (words);
 }
 
-char	**ft_split(char const *s, char c)
+char		**ft_split(char const *s, char c)
 {
-	int		i;
+	int	i;
+	int	j;
+	int		index;
 	char	**result;
-	int		breaks;
-	char	*tmp;
 
-	breaks = count_words(s, c) + 1;
-	result = malloc (sizeof(char *) * breaks);
-	if (!result)
-		return (NULL);
-
+	if (!s)
+		return (0);
+	if(!(result = malloc((count_words(s, c) + 1) * sizeof(char *))))
+		return (0);
 	i = 0;
-	tmp = (char *)s;
-	while (*tmp)
+	j = 0;
+	index = -1;
+	while (i <= ft_strlen(s))
 	{
-		while (*s == c)
-			++s;
-		tmp = (char *)s;
-		while (*tmp != c && *tmp)
-			++tmp;
-		if (*tmp == c || tmp > s)
+		if (s[i] != c && index < 0)
+			index = i;
+		else if ((s[i] == c || i == ft_strlen(s)) && index >= 0)
 		{
-			*result = ft_substr(s, 0, tmp - s);
-			s = tmp;
-			++result;
+			result[j++] = add_word(s, index, i);
+			index = -1;
 		}
+		i++;
 	}
-	*result = NULL;
-	printf("result%s\n", result[0]);
-	printf("result%s\n", result[1]);
-	printf("result%s\n", result[2]);
+	result[j] = 0;
 	return (result);
 }
