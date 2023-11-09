@@ -6,7 +6,7 @@
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 23:47:41 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/11/08 23:53:13 by ajuliao-         ###   ########.fr       */
+/*   Updated: 2023/11/09 00:07:17 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,39 +35,35 @@ static int	count_words(char const *s, char c)
 
 char	**ft_split(char const *s, char c)
 {
-int		i;
+	int		i;
 	char	**result;
 	int		breaks;
-	int		*starts;
-	int		*ends;
+	char	*tmp;
 
-	breaks = count_breaks(s, c) + 1;
+	breaks = count_words(s, c) + 1;
 	result = malloc (sizeof(char *) * breaks);
 	if (!result)
 		return (NULL);
-	if (!c)
-	{
-		result[0] = ft_strdup((char *)s);
-		return (result);
-	}
-	if (!*s)
-	{
-		result[0] = 0;
-		return (result);
-	}
-	starts = count_starts(s, c, breaks);
-	ends = count_ends(s, c, breaks);
+
 	i = 0;
-	while (i < breaks - 1)
+	tmp = (char *)s;
+	while (*tmp)
 	{
-		result[i] = ft_substr(s, starts[i], ends[i] - starts[i]);
-		if (result[i] == 0)
-			return (0);
-		i++;
+		while (*s == c)
+			++s;
+		tmp = (char *)s;
+		while (*tmp != c && *tmp)
+			++tmp;
+		if (*tmp == c || tmp > s)
+		{
+			*result = ft_substr(s, 0, tmp - s);
+			s = tmp;
+			++result;
+		}
 	}
-	result[breaks] = 0;
-	// printf("result%s\n", result[0]);
-	// printf("result%s\n", result[1]);
-	// printf("result%s\n", result[2]);
+	*result = NULL;
+	printf("result%s\n", result[0]);
+	printf("result%s\n", result[1]);
+	printf("result%s\n", result[2]);
 	return (result);
 }
