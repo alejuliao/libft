@@ -14,8 +14,8 @@
 
 static int	count_words(const char *s, char c)
 {
-	int count;
-	int check;
+	int		check;
+	int		count;
 
 	count = 0;
 	check = 0;
@@ -50,16 +50,15 @@ static char	*add_words(const char *s, int start, int end)
 	return (words);
 }
 
-char		**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	int		index;
 	char	**result;
 
-	if (!s)
-		return (0);
-	if(!(result = malloc((count_words(s, c) + 1) * sizeof(char *))))
+	result = malloc((count_words(s, c) + 1) * sizeof(char *));
+	if (!s || !result)
 		return (0);
 	i = 0;
 	j = 0;
@@ -70,7 +69,7 @@ char		**ft_split(char const *s, char c)
 			index = i;
 		else if ((s[i] == c || i == ft_strlen(s)) && index >= 0)
 		{
-			result[j++] = add_word(s, index, i);
+			result[j++] = add_words(s, index, i);
 			index = -1;
 		}
 		i++;
