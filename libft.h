@@ -6,18 +6,15 @@
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 19:47:11 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/11/06 21:25:22 by ajuliao-         ###   ########.fr       */
+/*   Updated: 2023/11/09 19:32:27 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
-# include <stddef.h>
 
 typedef struct s_list
 {
@@ -25,10 +22,11 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
-int		ft_isalnum(char c);
+int		ft_isalnum(int c);
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
-int		ft_strlen(const char *c);
+int		ft_isprint(int c);
+size_t	ft_strlen(const char *c);
 int		ft_isascii(int c);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
@@ -47,7 +45,7 @@ char	*ft_strrchr(const char *s, int c);
 void	*ft_memchr(const void *s, int c, size_t n);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
 int		ft_atoi(const char *nptr);
-char	*ft_strdup(char *src);
+char	*ft_strdup(const char *src);
 void	*ft_calloc(size_t nmemb, size_t size);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);

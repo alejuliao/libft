@@ -6,7 +6,7 @@
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 23:47:41 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/11/09 00:07:17 by ajuliao-         ###   ########.fr       */
+/*   Updated: 2023/11/09 19:02:08 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	**ft_split(char const *s, char c)
 {
 	int		i;
 	int		j;
-	int		index;
+	int		start;
 	char	**result;
 
 	result = malloc((count_words(s, c) + 1) * sizeof(char *));
@@ -62,15 +62,15 @@ char	**ft_split(char const *s, char c)
 		return (0);
 	i = 0;
 	j = 0;
-	index = -1;
+	start = -1;
 	while (i <= ft_strlen(s))
 	{
-		if (s[i] != c && index < 0)
-			index = i;
-		else if ((s[i] == c || i == ft_strlen(s)) && index >= 0)
+		if (s[i] != c && start < 0)
+			start = i;
+		else if ((s[i] == c || i == ft_strlen(s)) && start >= 0)
 		{
-			result[j++] = add_words(s, index, i);
-			index = -1;
+			result[j++] = add_words(s, start, i);
+			start = -1;
 		}
 		i++;
 	}
