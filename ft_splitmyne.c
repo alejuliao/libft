@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   ft_splitmyne.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 23:47:41 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/11/08 23:53:13 by ajuliao-         ###   ########.fr       */
+/*   Created: 2023/10/25 19:34:50 by ajuliao-          #+#    #+#             */
+/*   Updated: 2023/11/08 23:53:00 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	count_words(char const *s, char c)
+static int	count_breaks(char const *s, char c)
 {
-	int	words;
+	int	breaks;
 	int	i;
 
-	words = 0;
+	breaks = 0;
 	i = 0;
 	if (c == '\0')
 		return (1);
@@ -26,16 +26,63 @@ static int	count_words(char const *s, char c)
 		while (s[i] == c)
 			i++;
 		if (s[i] != c && s[i])
-			words++;
+			breaks++;
 		while (s[i] != c && s[i] != '\0')
 			i++;
 	}
-	return (words);
+	return (breaks);
+}
+
+static int	*count_ends(char const *s, char c, int breaks)
+{
+	int		*ends;
+	int		j;
+	int		i;
+
+	ends = (int *) malloc (sizeof(int) * breaks);
+	i = 0;
+	while (s[i] == c)
+		i++;
+	j = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] == c)
+		{
+			ends[j] = i;
+			while (s[i + 1] == c)
+				i++;
+			j++;
+		}
+		i++;
+	}
+	ends[breaks - 1] = ft_strlen(s);
+	return (ends);
+}
+
+static int	*count_starts(char const *s, char c, int breaks)
+{
+	int		*starts;
+	int		j;
+	int		i;
+
+	starts = (int *) malloc (sizeof(int) * breaks);
+	i = 0;
+	j = 0;
+	while (s[i] != '\0')
+	{
+		while (s[i] == c)
+			i++;
+		if (s[i] != c && s[i])
+			starts[j++] = i;
+		while (s[i] != c && s[i] != '\0')
+			i++;
+	}
+	return (starts);
 }
 
 char	**ft_split(char const *s, char c)
 {
-int		i;
+	int		i;
 	char	**result;
 	int		breaks;
 	int		*starts;
