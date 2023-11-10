@@ -6,7 +6,7 @@
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 20:59:05 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/11/06 21:11:16 by ajuliao-         ###   ########.fr       */
+/*   Updated: 2023/11/09 22:49:59 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
 	t_list	*node;
 
-	if (!del || !lst)
+	if (!del && !lst)
 		return ;
 	while (*lst)
 	{
 		del((*lst)->content);
 		node = *lst;
-		*lst = node->content;
+		*lst = node->next;
 		free(node);
 	}
 	*lst = NULL;
