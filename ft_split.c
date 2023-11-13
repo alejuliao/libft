@@ -6,7 +6,7 @@
 /*   By: ajuliao- <ajuliao-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 23:47:41 by ajuliao-          #+#    #+#             */
-/*   Updated: 2023/11/13 09:54:34 by ajuliao-         ###   ########.fr       */
+/*   Updated: 2023/11/13 11:22:29 by ajuliao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 static int	count_words(const char *s, char c)
 {
-	int		check;
-	int		count;
+	int	words;
+	int	i;
 
-	count = 0;
-	check = 0;
-	while (*s)
+	words = 0;
+	i = 0;
+	if (c == '\0')
+		return (1);
+	while (s[i] != '\0')
 	{
-		if (*s != c && check == 0)
-		{
-			check = 1;
-			count++;
-		}
-		else if (*s == c)
-			check = 0;
-		s++;
+		while (s[i] == c)
+			i++;
+		if (s[i] != c && s[i])
+			words++;
+		while (s[i] != c && s[i] != '\0')
+			i++;
 	}
-	return (count);
+	return (words);
 }
 
 static char	*add_words(const char *s, int start, int end)
@@ -39,7 +39,7 @@ static char	*add_words(const char *s, int start, int end)
 	int		i;
 
 	i = 0;
-	words = malloc((end - start + 1) * sizeof(char));
+	words = malloc(sizeof(char) * (end - start + 1));
 	if (!words)
 		return (NULL);
 	while (start < end)
@@ -58,7 +58,7 @@ char	**ft_split(char const *s, char c)
 	i = 0;
 	j = 0;
 	start = -1;
-	result = malloc((count_words(s, c) + 1) * sizeof(char *));
+	result = malloc(sizeof(char *) * (count_words(s, c) + 1));
 	if (!s || !result)
 		return (0);
 	while (i <= ft_strlen(s))
